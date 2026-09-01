@@ -5,8 +5,10 @@
 - License: Natively Personal Use Source License v1.0 — source-available, personal/non-commercial
   use only. This project stays within that: no monetization, no resale, no SaaS wrapper.
 - The base is now imported on `main` with its original history. Its official repository is named
-  `upstream`; there is deliberately no `origin` until Akshat creates a separate private personal
-  repository in a future GitHub phase.
+  `upstream`. The personal workflow remote is `origin`, a local bare repository at
+  `C:\Users\aksha\git-remotes\granola-alt.git`; `main` tracks `origin/main`. This is same-machine
+  storage only, so replace the `origin` URL with a private GitHub repository when that hosting
+  phase is activated.
 - `premium/` and `natively-api/` are upstream gitlinks and remain uninitialized. In particular,
   `premium/` points to a separate private repository and is irrelevant to this work — its paid
   diarization feature is not part of this project. Do not initialize either submodule unless
