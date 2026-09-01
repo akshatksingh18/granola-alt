@@ -12,17 +12,49 @@
   diarization feature is not part of this project. Do not initialize either submodule unless
   Akshat separately approves it.
 
-## First local build (not run yet)
+## Local Windows setup and validation
 
+The local toolchain is installed and available to Akshat's Windows user:
+
+- Git 2.53.0.windows.1
+- Node.js 24.14.0 with npm 11.9.0
+- Rust 1.98.0 through `rustup` (`C:\Users\aksha\.cargo\bin`)
+- Visual Studio Build Tools 2026
+
+Install the exact locked dependencies with:
+
+```powershell
+npm ci
 ```
-npm install
+
+The repository is on `D:` and Windows Application Control blocks Cargo build helpers generated
+there. Keep Cargo's generated target directory on the user profile's `C:` drive when building the
+native module:
+
+```powershell
+$env:CARGO_TARGET_DIR = 'C:\Users\aksha\AppData\Local\Natively\cargo-target'
 npm run build:native
 ```
 
-- Prerequisites: Node.js v20+, Git, Rust (`rustup`) — Rust is required to build the native audio
-  module.
+The following validation has been completed on Windows:
+
+- `npm run build:native` passed with the `CARGO_TARGET_DIR` override above.
+- `npm run build` and `npm run typecheck:electron` passed.
+- `npm run build:electron:core-smoke` passed. The corresponding core test suites passed:
+  `test:core-smoke` (90 passed), `test:lib` (384 passed, 1 skipped), and `test:scripts`
+  (86 passed).
+- The full `npm run build:electron` cannot resolve imports from the uninitialized private
+  `premium/` gitlink. That is an expected boundary of this public base, not a reason to fetch the
+  private repository. A full premium-enabled package has therefore not been produced.
+- `npm audit` reports 30 advisories in the locked tree (1 low, 4 moderate, 25 high, 0 critical).
+  No automatic audit fix was applied because it would change the reviewed dependency graph.
+
+Build validated on Windows for the native, renderer, type-check, and core Electron scopes.
+Reviewed but not executed on macOS. Requires physical macOS verification for macOS-only behavior.
+
 - Dev: `npm start`. Production build: `npm run dist` (Vite build → TypeScript compile → native
-  module build → electron-builder).
+  module build → electron-builder); the production path still requires the private premium
+  sources described above.
 - Env vars: copy `.env.example` → `.env`. It already lists the base repo's existing AI/speech
   provider keys. Add the var from `.env.example.addition` (`DEEPGRAM_API_KEY`) — get one free at
   `https://console.deepgram.com`.
