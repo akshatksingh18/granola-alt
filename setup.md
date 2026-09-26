@@ -5,10 +5,11 @@
 - License: Natively Personal Use Source License v1.0 — source-available, personal/non-commercial
   use only. This project stays within that: no monetization, no resale, no SaaS wrapper.
 - The base is now imported on `main` with its original history. Its official repository is named
-  `upstream`. The personal workflow remote is `origin`, a local bare repository at
-  `C:\Users\aksha\git-remotes\granola-alt.git`; `main` tracks `origin/main`. This is same-machine
-  storage only, so replace the `origin` URL with a private GitHub repository when that hosting
-  phase is activated.
+  `upstream` (push disabled). The personal workflow remote `origin` is the private
+  <https://github.com/akshatksingh18/granola-alt> repository; `main` tracks `origin/main`. The earlier same-machine bare
+  repository `C:\Users\aksha\git-remotes\granola-alt.git` is kept as the `local-backup` remote. Keep
+  `origin` private: the Natively licence allows personal, non-commercial use only. Three model/demo
+  files are 66–94 MB (under GitHub's 100 MB limit); move them to Git LFS only if pushes start failing.
 - `premium/` and `natively-api/` are upstream gitlinks and remain uninitialized. In particular,
   `premium/` points to a separate private repository and is irrelevant to this work — its paid
   diarization feature is not part of this project. Do not initialize either submodule unless
