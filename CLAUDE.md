@@ -20,6 +20,8 @@ copyable live blocks, save it to searchable history. That's the entire product.
 feature code has been written yet. Moves to Building once the feasibility spike below passes.
 
 ## Files
+- `../voice-workspace/CLAUDE.md` — owning context for the standalone integrated voice app;
+  its long-term requirements do not replace this repository's current transcription spec.
 - `spec.md` — full functional spec: requirements, architecture, data models, known limitations.
   **Read in full before implementing any part of this feature** — this `CLAUDE.md` is a pointer,
   not a substitute.
